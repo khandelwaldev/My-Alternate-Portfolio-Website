@@ -2,10 +2,25 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito+Sans);
 @import url(https://fonts.googleapis.com/css?family=Rubik);
 
+:root {
+    --primaryBg: #fff;
+    --primaryText: #555;
+}
+
+.dark {
+    --primaryBg: #000;
+    --primaryText: #ddd;
+}
+
 html {
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
+}
+
+body.dark-theme {
+    --primaryBg: #000;
+    --primaryText: #ddd;
 }
 
 body {
@@ -13,8 +28,32 @@ body {
     padding: 0;
     font-size: 100%;
     line-height: 1.5;
-    color: #555;
+    background-color: var(--primaryBg);
+    color: var(--primaryText);
     font-family: 'Nunito Sans', sans-serif
+}
+
+/* theme switch  */
+.themeSwitch {
+    position: fixed;
+    width: fit-content;
+    bottom: 50px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primaryText);
+    border-radius: 12px;
+}
+.themeBtn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--primaryBg);
+    font-size: 20px;
+    cursor: pointer;
 }
 
 article,
@@ -4789,7 +4828,7 @@ strong {
     margin-top: 1em;
     padding-top: 1em;
     line-height: 1.25;
-    color: #333
+    color: var(--primaryText);
 }
 
 h2 {

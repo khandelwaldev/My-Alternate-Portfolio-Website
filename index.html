@@ -30,6 +30,14 @@
   </head>
 
   <body>
+    <!-- Theme Switch -->
+    <div class="themeSwitch">
+      <button class="themeBtn" id="themeSwitchBtn">
+          <i id="themeIcon" class="fa"></i>
+      </button>
+  </div>
+
+    <!-- Site -->
     <div id="particles-js">
       <div class="header">
         <h1>
@@ -287,5 +295,49 @@
     <script src="./assets/js/google-analytics.js"></script>
     <!-- Import JS: Main Script -->
     <script src="./assets/js/main.js"></script>
+
+    <!-- Theme Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    // Check if user has a preferred color scheme
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    // Set initial theme based on user preference or default to light theme
+    document.body.classList.toggle("dark-theme", prefersDarkScheme);
+    updateThemeIcon(prefersDarkScheme);
+
+    // Function to toggle between light and dark themes
+    function toggleTheme() {
+        document.body.classList.toggle("dark-theme");
+        updateThemeIcon(document.body.classList.contains("dark-theme"));
+        // Store the theme preference in local storage
+        const isDarkTheme = document.body.classList.contains("dark-theme");
+        localStorage.setItem("darkTheme", JSON.stringify(isDarkTheme));
+    }
+
+    // Function to update theme icon
+    function updateThemeIcon(isDarkTheme) {
+        const themeIcon = document.getElementById("themeIcon");
+        if (themeIcon) {
+            themeIcon.innerHTML = isDarkTheme ? '\uf186' : '\uf185'; // Update icon based on theme
+        }
+    }
+
+    // Check local storage for theme preference on page load
+    const storedTheme = localStorage.getItem("darkTheme");
+    if (storedTheme !== null) {
+        const isDarkTheme = JSON.parse(storedTheme);
+        document.body.classList.toggle("dark-theme", isDarkTheme);
+        updateThemeIcon(isDarkTheme);
+    }
+
+    // Theme switch button event listener
+    const themeSwitchBtn = document.getElementById("themeSwitchBtn");
+    if (themeSwitchBtn) {
+        themeSwitchBtn.addEventListener("click", toggleTheme);
+    }
+});
+
+    </script>
   </body>
 </html>
